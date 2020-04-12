@@ -1,4 +1,5 @@
-FROM pytorch/pytorch:1.1.0-cuda10.0-cudnn7.5-devel
+FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
+ARG TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX 7.5+PTX"
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -17,7 +18,6 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libpng-dev \
     libtiff-dev \
-    libjasper-dev \
     libavformat-dev \
     libpq-dev \
     libturbojpeg \
@@ -53,3 +53,8 @@ RUN pip install --no-cache-dir \
     iterative-stratification
 
 RUN pip install --upgrade --no-cache-dir cython && pip install --no-cache-dir pycocotools==2.0.0 mmcv==0.2.5
+
+RUN git clone  --recursive https://github.com/sh1ng/kaggle-imaterialist.git && \
+    cd kaggle-imaterialist/mmdetection && \
+    bash compile.sh && \
+    python setup.py develop
