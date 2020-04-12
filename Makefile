@@ -34,6 +34,7 @@ run-omen: ## Run container in omen
 
 run-localhost: ## Run container in localhost
 	docker run \
+		--gpus all,capabilities=utility \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
@@ -45,6 +46,7 @@ run-localhost: ## Run container in localhost
 
 run-ubuntu: ## Run container in ubuntu
 	docker run \
+		--gpus all,capabilities=utility \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
