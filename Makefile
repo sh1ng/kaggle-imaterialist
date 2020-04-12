@@ -12,6 +12,7 @@ build:  ## Build the container
 
 run-dgx: ## Run container in omen
 	docker run \
+		--gpus all \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
@@ -23,6 +24,7 @@ run-dgx: ## Run container in omen
 
 run-omen: ## Run container in omen
 	docker run \
+		--gpus all \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
@@ -34,7 +36,7 @@ run-omen: ## Run container in omen
 
 run-localhost: ## Run container in localhost
 	docker run \
-		--gpus all,capabilities=utility \
+		--gpus all \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
@@ -46,7 +48,7 @@ run-localhost: ## Run container in localhost
 
 run-ubuntu: ## Run container in ubuntu
 	docker run \
-		--gpus all,capabilities=utility \
+		--gpus all \
 		-itd \
 		--ipc=host \
 		--name=$(CONTAINER_NAME) \
